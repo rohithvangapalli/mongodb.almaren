@@ -38,10 +38,17 @@ private[almaren] case class TargetMongoDb(
 
   def target(df: DataFrame): DataFrame = {
     logger.info(s"hosts:{$hosts}, database:{$database}, collection:{$collection}, user:{$user}, options:{$options}, saveMode:{$saveMode}")
-    df.write.format("mongo")
+
+    val writeConfig = WriteConfig(      
+      (user,password) match {
+        case (Some(u),Some(p)) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection") ++ options
+        case (_,_) => Map("uri" -> s"mongodb://$hosts/$database.$collection") ++ options
+      })
+
+    MongoSpark.save(
+      df.write.format("mongo")
       .options(options)
-      .mode(saveMode)
-      .save
+      .mode(saveMode),writeConfig)
     df
   }
 
