@@ -33,6 +33,10 @@ Parameters:
 | options    | extra connector options |
 
 ```scala
+import com.github.music.of.the.ainur.almaren.Almaren
+import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
+import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
+
 almaren.builder.sourceMongoDb("localhost","foo","bar")
 ```
 
@@ -52,5 +56,10 @@ Parameters:
 
 
 ```scala
-almaren.builder.targetMongoDb("localhost","foo","bar")
+import org.apache.spark.sql.SaveMode
+import com.github.music.of.the.ainur.almaren.Almaren
+import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
+import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
+
+almaren.builder.targetMongoDb("localhost","foo","bar", saveMode = SaveMode.Overwrite)
 ```
