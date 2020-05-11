@@ -1,5 +1,6 @@
 # MongoDB Connector
 
+[![Build Status](https://travis-ci.com/music-of-the-ainur/mongodb.almaren.svg?branch=master)](https://travis-ci.com/music-of-the-ainur/mongodb.almaren)
 
 Add to your build:
 ```
