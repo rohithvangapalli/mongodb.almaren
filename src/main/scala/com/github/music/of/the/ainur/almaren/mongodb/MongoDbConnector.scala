@@ -19,10 +19,10 @@ private[almaren] case class SourceMongoDb(
   def source(df: DataFrame): DataFrame = {
     logger.info(s"hosts:{$hosts}, database:{$database}, collection:{$collection}, user:{$user}, options:{$options}")
     SparkSessionFunctions(df.sparkSession).loadFromMongoDB(ReadConfig(
-     (user,password) match {
-       case (Some(u),Some(p)) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection") ++ options
-       case (_,_) => Map("uri" -> s"mongodb://$hosts/$database.$collection") ++ options
-     })
+      (user,password) match {
+        case (Some(u),Some(p)) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection") ++ options
+        case (_,_) => Map("uri" -> s"mongodb://$hosts/$database.$collection") ++ options
+      })
     )}
 }
 
