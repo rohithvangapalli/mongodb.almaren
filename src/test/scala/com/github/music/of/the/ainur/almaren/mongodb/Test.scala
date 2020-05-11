@@ -23,7 +23,9 @@ class Test extends FunSuite with BeforeAndAfter {
   // Save Twitter data to Solr
   val df = almaren.builder.sourceMongoDb("localhost","foo","movie").batch
 
-  almaren.builder.targetMongoDb("localhost","baz","movie").batch
+  df.createOrReplaceTempView("foo")
+
+  almaren.builder.sourceSql("SELECT * FROM foo").targetMongoDb("localhost","baz","movie").batch
 
   df.show(false)
   df.printSchema()

@@ -22,11 +22,14 @@ URI to connect to MongoDB:
 mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]
 ```
 
-
-```scala
-```
-
 ## Example
 
+Source
 ```scala
+almaren.builder.sourceMongoDb("localhost","foo","movie")
+```
+
+Target
+```scala
+almaren.builder.targetMongoDb("localhost","baz","movie")
 ```
