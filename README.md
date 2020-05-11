@@ -24,12 +24,38 @@ mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][
 
 ## Example
 
-Source
+### Source
+
+Parameters:
+
+| Parameters | Description             |
+|------------|-------------------------|
+| hosts      | localhost:27017         |
+| database   | foo                     |
+| collection | bar                     |
+| user       | username                |
+| password   | password                |
+| options    | extra connector options |
+
 ```scala
-almaren.builder.sourceMongoDb("localhost","foo","movie")
+almaren.builder.sourceMongoDb("localhost","foo","bar")
 ```
 
-Target
+### Target
+
+Parameters:
+
+| Parameters | Description             |
+|------------|-------------------------|
+| hosts      | localhost:27017         |
+| database   | foo                     |
+| collection | bar                     |
+| user       | username                |
+| password   | password                |
+| options    | extra connector options |
+| saveMode   | SaveMode.Overwrite      |
+
+
 ```scala
-almaren.builder.targetMongoDb("localhost","baz","movie")
+almaren.builder.targetMongoDb("localhost","foo","bar")
 ```
