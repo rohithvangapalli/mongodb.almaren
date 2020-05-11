@@ -13,14 +13,9 @@ spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-
 ```
 
 
-
 ## Source and Target
 
-URI to connect to MongoDB:
-
-```
-mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]
-```
+Connector was implemented using: [https://github.com/mongodb/mongo-spark](https://github.com/mongodb/mongo-spark).
 
 ## Example
 
