@@ -27,7 +27,7 @@ class Test extends FunSuite with BeforeAndAfter {
   createSampleData(testTable)
 
   //Write Data From MongoDB
-  val df1 = almaren.builder.sourceSql(s"SELECT * FROM $testTable").targetMongoDb("localhost","test","movie").batch
+  val df1 = almaren.builder.sourceSql(s"SELECT * FROM $testTable").targetMongoDb("localhost","test","movie", saveMode = SaveMode.Overwrite).batch
 
   // Read Data From MongoDB
   val df2 = almaren.builder.sourceMongoDb("localhost","test","movie").batch
