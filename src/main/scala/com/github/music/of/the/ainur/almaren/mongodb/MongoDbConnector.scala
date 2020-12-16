@@ -14,14 +14,17 @@ private[almaren] case class SourceMongoDb(
   collection: String,
   user:Option[String],
   password:Option[String],
+  stringPrefix:Option[String],
   options:Map[String,String]) extends Source {
 
   def source(df: DataFrame): DataFrame = {
     logger.info(s"hosts:{$hosts}, database:{$database}, collection:{$collection}, user:{$user}, options:{$options}")
     SparkSessionFunctions(df.sparkSession).loadFromMongoDB(ReadConfig(
-      (user,password) match {
-        case (Some(u),Some(p)) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection") ++ options
-        case (_,_) => Map("uri" -> s"mongodb://$hosts/$database.$collection") ++ options
+      (user,password,stringPrefix) match {
+        case (Some(u),Some(p),Some(c)) => Map("uri" -> s"mongodb+$c://$u:$p@$hosts/$database.$collection") ++ options
+        case (Some(u),Some(p),_) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection") ++ options
+        case (_,_,Some(c)) => Map("uri" -> s"mongodb+$c://$hosts/$database.$collection") ++ options
+        case (_,_,_) => Map("uri" -> s"mongodb://$hosts/$database.$collection") ++ options
       })
     )}
 }
@@ -33,6 +36,7 @@ private[almaren] case class TargetMongoDb(
   collection: String,
   user:Option[String],
   password:Option[String],
+  stringPrefix:Option[String],
   options:Map[String,String],
   saveMode:SaveMode) extends Target {
 
@@ -40,9 +44,11 @@ private[almaren] case class TargetMongoDb(
     logger.info(s"hosts:{$hosts}, database:{$database}, collection:{$collection}, user:{$user}, options:{$options}, saveMode:{$saveMode}")
 
     val writeConfig = WriteConfig(      
-      (user,password) match {
-        case (Some(u),Some(p)) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection") ++ options
-        case (_,_) => Map("uri" -> s"mongodb://$hosts/$database.$collection") ++ options
+      (user,password,stringPrefix) match {
+        case (Some(u),Some(p),Some(c)) => Map("uri" -> s"mongodb+$c://$u:$p@$hosts/$database.$collection") ++ options
+        case (Some(u),Some(p),_) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection") ++ options
+        case (_,_,Some(c)) => Map("uri" -> s"mongodb+$c://$hosts/$database.$collection") ++ options
+        case (_,_,_) => Map("uri" -> s"mongodb://$hosts/$database.$collection") ++ options
       })
 
     MongoSpark.save(
@@ -55,11 +61,11 @@ private[almaren] case class TargetMongoDb(
 }
 
 private[almaren] trait MongoDbConnector extends Core {
-  def targetMongoDb(hosts: String,database: String,collection: String,user:Option[String] = None,password:Option[String] = None,options:Map[String,String] = Map(),saveMode:SaveMode = SaveMode.ErrorIfExists): Option[Tree] =
-     TargetMongoDb(hosts,database,collection,user,password,options,saveMode)
+  def targetMongoDb(hosts: String,database: String,collection: String,user:Option[String] = None,password:Option[String] = None,stringPrefix:Option[String] = None,options:Map[String,String] = Map(),saveMode:SaveMode = SaveMode.ErrorIfExists): Option[Tree] =
+     TargetMongoDb(hosts,database,collection,user,password,stringPrefix,options,saveMode)
 
-  def sourceMongoDb(hosts: String,database: String,collection: String,user:Option[String] = None,password:Option[String] = None,options:Map[String,String] = Map()): Option[Tree] =
-    SourceMongoDb(hosts,database,collection,user,password,options)
+  def sourceMongoDb(hosts: String,database: String,collection: String,user:Option[String] = None,password:Option[String] = None,stringPrefix:Option[String] = None,options:Map[String,String] = Map()): Option[Tree] =
+    SourceMongoDb(hosts,database,collection,user,password,stringPrefix,options)
 }
 
 object MongoDb {
