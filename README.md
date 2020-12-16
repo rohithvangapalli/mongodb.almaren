@@ -30,7 +30,10 @@ Parameters:
 | collection | bar                     |
 | user       | username                |
 | password   | password                |
+|stringPrefix| this is used to specify MongoDb Connection type(srv) https://docs.mongodb.com/manual/reference/connection-string/|
 | options    | extra connector options |
+
+#### For Standalone Connection Type Mongo
 
 ```scala
 import com.github.music.of.the.ainur.almaren.Almaren
@@ -38,6 +41,16 @@ import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
 import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 
 almaren.builder.sourceMongoDb("localhost","foo","bar")
+```
+
+#### For srv Connection Type Mongo
+
+```scala
+import com.github.music.of.the.ainur.almaren.Almaren
+import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
+import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
+
+almaren.builder.sourceMongoDb("localhost","foo","bar",None,None,Some("srv"))
 ```
 
 ### Target
@@ -51,9 +64,11 @@ Parameters:
 | collection | bar                     |
 | user       | username                |
 | password   | password                |
+|stringPrefix| this is used to specify MongoDb Connection type(srv) https://docs.mongodb.com/manual/reference/connection-string/|
 | options    | extra connector options |
 | saveMode   | SaveMode.Overwrite      |
 
+#### For Standalone Connection Type Mongo
 
 ```scala
 import org.apache.spark.sql.SaveMode
@@ -62,4 +77,16 @@ import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
 import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 
 almaren.builder.targetMongoDb("localhost","foo","bar", saveMode = SaveMode.Overwrite)
+```
+
+
+#### For srv Connection Type Mongo
+
+```scala
+import org.apache.spark.sql.SaveMode
+import com.github.music.of.the.ainur.almaren.Almaren
+import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
+import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
+
+almaren.builder.targetMongoDb("localhost","foo","bar",None,None,Some("srv"), saveMode = SaveMode.Overwrite)
 ```
