@@ -4,12 +4,12 @@
 
 Add to your build:
 ```
-libraryDependencies += "com.github.music-of-the-ainur" %% "mongodb-almaren" % "0.0.3-3.1"
+libraryDependencies += "com.github.music-of-the-ainur" %% "mongodb-almaren" % "0.0.4-3.1"
 ```
 
 Example in Spark Shell
 ```
-spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.3-3.1,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.3-3.1"
+spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.3-$SPARK_VERSION,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.4-$SPARK_VERSION"
 ```
 
 
