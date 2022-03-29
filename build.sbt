@@ -8,13 +8,16 @@ crossScalaVersions := Seq(scala211, scala212)
 ThisBuild / scalaVersion := scala212
 
 val sparkVersion = "2.4.5"
+val majorVersionReg = "([0-9]+\\.[0-9]+).{0,}".r
+
+val majorVersionReg(majorVersion) = sparkVersion
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion % "provided",
   "org.apache.spark" %% "spark-sql" % sparkVersion % "provided",
-  "com.github.music-of-the-ainur" %% "almaren-framework" % s"0.2.7-$sparkVersion" % "provided",
+  "com.github.music-of-the-ainur" %% "almaren-framework" % s"0.9.3-${majorVersion}" % "provided",
   "org.mongodb.spark" %% "mongo-spark-connector" % "2.4.2",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0",
   "org.scalatest" %% "scalatest" % "3.0.5" % "test"
@@ -37,6 +40,12 @@ ThisBuild / developers := List(
     name  = "Daniel Mantovani",
     email = "daniel.mantovani@modak.com",
     url   = url("https://github.com/music-of-the-ainur")
+  ),
+  Developer(
+    id = "badrinathpatchikolla",
+    name = "Badrinath Patchikolla",
+    email = "badrinath.patchikolla@modakanalytics.com",
+    url = url("https://github.com/music-of-the-ainur")
   )
 )
 
