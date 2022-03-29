@@ -5,7 +5,7 @@ language: scala
 jdk: openjdk8
 
 scala:
-  - 2.11.12
+  - 2.12.15
 
 script:
   - sbt +test
