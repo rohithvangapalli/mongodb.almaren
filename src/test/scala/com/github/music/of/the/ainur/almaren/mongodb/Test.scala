@@ -9,7 +9,7 @@ import org.apache.spark.sql.{DataFrame, Column}
 import org.apache.spark.sql.AnalysisException
 import org.apache.spark.sql.functions._
 
-class Test extends FunSuite with BeforeAndAfter {
+class  Test extends FunSuite with BeforeAndAfter {
 
   val almaren = Almaren("App Test")
 

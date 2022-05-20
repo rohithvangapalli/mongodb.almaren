@@ -10,7 +10,6 @@ libraryDependencies += "com.github.music-of-the-ainur" %% "mongodb-almaren" % "0
 Example in Spark Shell
 ```
 spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.3-$SPARK_VERSION,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.6-$SPARK_VERSION"
-```
 
 
 ## Source and Target
