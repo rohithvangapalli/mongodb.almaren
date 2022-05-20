@@ -18,10 +18,10 @@ private[almaren] case class SourceMongoDb(
   def source(df: DataFrame): DataFrame = {
     logger.info(s"hosts:{$hosts}, database:{$database}, collection:{$collection}, user:{$user}, options:{$options}")
     val paramsOptions = (user, password, stringPrefix) match {
-      case (Some(u), Some(p), Some(c)) => Map("uri" -> s"mongodb+$c://$u:$p@$hosts/$database.$collection")
-      case (Some(u), Some(p), _) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection")
-      case (_, _, Some(c)) => Map("uri" -> s"mongodb+$c://$hosts/$database.$collection")
-      case (_, _, _) => Map("uri" -> s"mongodb://$hosts/$database.$collection")
+      case (Some(u), Some(p), Some(c)) => Map("connection.uri" -> s"mongodb+$c://$u:$p@$hosts/$database.$collection")
+      case (Some(u), Some(p), _) => Map("connection.uri" -> s"mongodb://$u:$p@$hosts/$database.$collection")
+      case (_, _, Some(c)) => Map("connection.uri" -> s"mongodb+$c://$hosts/$database.$collection")
+      case (_, _, _) => Map("connection.uri" -> s"mongodb://$hosts/$database.$collection")
     }
     val params = paramsOptions ++ Map("database" -> database, "collection" -> collection) ++ options
 
@@ -46,10 +46,10 @@ private[almaren] case class TargetMongoDb(
     logger.info(s"hosts:{$hosts}, database:{$database}, collection:{$collection}, user:{$user}, options:{$options}, saveMode:{$saveMode}")
 
     val paramsOptions = (user, password, stringPrefix) match {
-      case (Some(u), Some(p), Some(c)) => Map("uri" -> s"mongodb+$c://$u:$p@$hosts/$database.$collection")
-      case (Some(u), Some(p), _) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection")
-      case (_, _, Some(c)) => Map("uri" -> s"mongodb+$c://$hosts/$database.$collection")
-      case (_, _, _) => Map("uri" -> s"mongodb://$hosts/$database.$collection")
+      case (Some(u), Some(p), Some(c)) => Map("connection.uri" -> s"mongodb+$c://$u:$p@$hosts/$database.$collection")
+      case (Some(u), Some(p), _) => Map("connection.uri" -> s"mongodb://$u:$p@$hosts/$database.$collection")
+      case (_, _, Some(c)) => Map("connection.uri" -> s"mongodb+$c://$hosts/$database.$collection")
+      case (_, _, _) => Map("connection.uri" -> s"mongodb://$hosts/$database.$collection")
     }
     val params = paramsOptions ++ Map("database" -> database, "collection" -> collection) ++ options
 
