@@ -5,12 +5,10 @@ import com.github.music.of.the.ainur.almaren.Tree
 import com.github.music.of.the.ainur.almaren.builder.Core
 import com.github.music.of.the.ainur.almaren.state.core.{Target,Source}
 import com.mongodb.spark._
-import com.mongodb.spark.config._
-import com.mongodb.spark.sql.SparkSessionFunctions
 
 private[almaren] case class SourceMongoDb(
   hosts: String,
-  database: String, 
+  database: String,
   collection: String,
   user:Option[String],
   password:Option[String],
@@ -19,20 +17,24 @@ private[almaren] case class SourceMongoDb(
 
   def source(df: DataFrame): DataFrame = {
     logger.info(s"hosts:{$hosts}, database:{$database}, collection:{$collection}, user:{$user}, options:{$options}")
-    SparkSessionFunctions(df.sparkSession).loadFromMongoDB(ReadConfig(
-      (user,password,stringPrefix) match {
-        case (Some(u),Some(p),Some(c)) => Map("uri" -> s"mongodb+$c://$u:$p@$hosts/$database.$collection") ++ options
-        case (Some(u),Some(p),_) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection") ++ options
-        case (_,_,Some(c)) => Map("uri" -> s"mongodb+$c://$hosts/$database.$collection") ++ options
-        case (_,_,_) => Map("uri" -> s"mongodb://$hosts/$database.$collection") ++ options
-      })
-    )}
+    val paramsOptions = (user, password, stringPrefix) match {
+      case (Some(u), Some(p), Some(c)) => Map("uri" -> s"mongodb+$c://$u:$p@$hosts/$database.$collection")
+      case (Some(u), Some(p), _) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection")
+      case (_, _, Some(c)) => Map("uri" -> s"mongodb+$c://$hosts/$database.$collection")
+      case (_, _, _) => Map("uri" -> s"mongodb://$hosts/$database.$collection")
+    }
+    val params = paramsOptions ++ Map("database" -> database, "collection" -> collection) ++ options
+
+    df.sparkSession.read.format("mongodb")
+      .options(params)
+      .load()
+  }
 }
 
 
 private[almaren] case class TargetMongoDb(
   hosts: String,
-  database: String, 
+  database: String,
   collection: String,
   user:Option[String],
   password:Option[String],
@@ -43,18 +45,18 @@ private[almaren] case class TargetMongoDb(
   def target(df: DataFrame): DataFrame = {
     logger.info(s"hosts:{$hosts}, database:{$database}, collection:{$collection}, user:{$user}, options:{$options}, saveMode:{$saveMode}")
 
-    val writeConfig = WriteConfig(      
-      (user,password,stringPrefix) match {
-        case (Some(u),Some(p),Some(c)) => Map("uri" -> s"mongodb+$c://$u:$p@$hosts/$database.$collection") ++ options
-        case (Some(u),Some(p),_) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection") ++ options
-        case (_,_,Some(c)) => Map("uri" -> s"mongodb+$c://$hosts/$database.$collection") ++ options
-        case (_,_,_) => Map("uri" -> s"mongodb://$hosts/$database.$collection") ++ options
-      })
+    val paramsOptions = (user, password, stringPrefix) match {
+      case (Some(u), Some(p), Some(c)) => Map("uri" -> s"mongodb+$c://$u:$p@$hosts/$database.$collection")
+      case (Some(u), Some(p), _) => Map("uri" -> s"mongodb://$u:$p@$hosts/$database.$collection")
+      case (_, _, Some(c)) => Map("uri" -> s"mongodb+$c://$hosts/$database.$collection")
+      case (_, _, _) => Map("uri" -> s"mongodb://$hosts/$database.$collection")
+    }
+    val params = paramsOptions ++ Map("database" -> database, "collection" -> collection) ++ options
 
-    MongoSpark.save(
-      df.write.format("mongo")
-      .options(options)
-      .mode(saveMode),writeConfig)
+    df.write.format("mongodb")
+      .options(params)
+      .mode(saveMode)
+      .save
     df
   }
 
