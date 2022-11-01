@@ -22,7 +22,6 @@ jobs:
           - "27017:27017"
         container_name: "mongodb"
         environment:
-          - POSTGRES_PASSWORD=postgres
           - MONGODB_DATABASE=test
           - MONGODB_USERNAME=mongoadmin
           - MONGODB_PASSWORD=mongoadmin
