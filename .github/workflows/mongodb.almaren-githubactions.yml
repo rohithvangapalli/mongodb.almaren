@@ -23,8 +23,8 @@ jobs:
           - 27017:27017
         env:
           MONGODB_DATABASE: test
-          MONGODB_USERNAME: mongoadmin
-          MONGODB_PASSWORD: mongoadmin
+          MONGO_INITDB_ROOT_USERNAME: mongoadmin
+          MONGO_INITDB_ROOT_PASSWORD: mongoadmin
     steps:
       - name : Check out repository code
         uses: actions/checkout@v2
