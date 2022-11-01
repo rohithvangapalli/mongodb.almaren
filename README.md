@@ -1,6 +1,6 @@
 # MongoDB Connector
 
-[![Build Status](https://travis-ci.com/music-of-the-ainur/mongodb.almaren.svg?branch=master)](https://travis-ci.com/music-of-the-ainur/mongodb.almaren)
+[![Build Status](https://github.com/music-of-the-ainur/mongodb.almaren/actions/workflows/mongodb-almaren-githubactions.yml/badge.svg)](https://github.com/music-of-the-ainur/mongodb.almaren/actions/workflows/mongodb-almaren-githubactions.yml)
 
 To add Mongodb Almaren dependency to your sbt build:
 ```
