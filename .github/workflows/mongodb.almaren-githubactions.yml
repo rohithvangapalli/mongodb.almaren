@@ -16,14 +16,14 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-      mongodb:
-        image: "bitnami/mongodb:4.2.16"
+      mongoDb:
+        image: bitnami/mongodb:4.2.16
         ports:
-          - "27017:27017"
-        environment:
-          - MONGODB_DATABASE=test
-          - MONGODB_USERNAME=mongoadmin
-          - MONGODB_PASSWORD=mongoadmin
+          - 27017:27017
+        env:
+          MONGODB_DATABASE: test
+          MONGODB_USERNAME: mongoadmin
+          MONGODB_PASSWORD: mongoadmin
     steps:
       - name : Check out repository code
         uses: actions/checkout@v2
