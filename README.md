@@ -2,14 +2,15 @@
 
 [![Build Status](https://github.com/music-of-the-ainur/mongodb.almaren/actions/workflows/mongodb-almaren-githubactions.yml/badge.svg)](https://github.com/music-of-the-ainur/mongodb.almaren/actions/workflows/mongodb-almaren-githubactions.yml)
 
-Add to your build:
+To add Mongodb Almaren dependency to your sbt build::
 ```
 libraryDependencies += "com.github.music-of-the-ainur" %% "mongodb-almaren" % "0.0.7-3.2"
+libraryDependencies += "org.mongodb.spark" % "mongo-spark-connector" % "10.0.4"
 ```
 
-Example in Spark Shell
+To run in spark-shell:
 ```
-spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.8-3.2,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.7-3.2"
+spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.8-3.2,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.7-3.2,org.mongodb.spark:mongo-spark-connector_2.12:10.0.4"
 ```
 
 MongoDB Connector is available in
