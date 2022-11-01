@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion % "provided",
   "org.apache.spark" %% "spark-sql" % sparkVersion % "provided",
   "com.github.music-of-the-ainur" %% "almaren-framework" % s"0.9.8-${majorVersion}" % "provided",
-  "org.mongodb.spark" %% "mongo-spark-connector" % "2.4.4" % "provided",
+  "org.mongodb.spark" %% "mongo-spark-connector" % "2.4.4",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5",
   "org.scalatest" %% "scalatest" % "3.2.14" % "test"
 )
