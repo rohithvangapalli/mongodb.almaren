@@ -2,15 +2,29 @@
 
 [![Build Status](https://travis-ci.com/music-of-the-ainur/mongodb.almaren.svg?branch=master)](https://travis-ci.com/music-of-the-ainur/mongodb.almaren)
 
-Add to your build:
+To add Mongodb Almaren dependency to your sbt build:
+
 ```
-libraryDependencies += "com.github.music-of-the-ainur" %% "mongodb-almaren" % "0.0.5-2-4"
+libraryDependencies += "com.github.music-of-the-ainur" %% "mongodb-almaren" % "0.0.7-2.4"
 ```
 
-Example in Spark Shell
+To run in spark-shell:
+
 ```
-spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.3-$SPARK_VERSION,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.5-$SPARK_VERSION"
+spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.8-2.4,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.7-2.4"
 ```
+
+MongoDB Connector is available in [Maven Central](https://mvnrepository.com/artifact/com.github.music-of-the-ainur)
+repository.
+
+| version                    | Connector Artifact                                             |
+|----------------------------|----------------------------------------------------------------|
+| Spark 3.3.x and scala 2.13 | `com.github.music-of-the-ainur:mongodb-almaren_2.13:0.0.7-3.3` |
+| Spark 3.3.x and scala 2.12 | `com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.7-3.3` |
+| Spark 3.2.x and scala 2.12 | `com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.7-3.2` |
+| Spark 3.1.x and scala 2.12 | `com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.7-3.1` |
+| Spark 2.4.x and scala 2.12 | `com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.7-2.4` |
+| Spark 2.4.x and scala 2.11 | `com.github.music-of-the-ainur:mongodb-almaren_2.11:0.0.7-2.4` |
 
 
 ## Source and Target
