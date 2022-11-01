@@ -8,8 +8,8 @@ import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 import org.apache.spark.sql.{DataFrame, Column}
 import org.apache.spark.sql.AnalysisException
 import org.apache.spark.sql.functions._
-
-class  Test extends FunSuite with BeforeAndAfter {
+import org.scalatest.funsuite.AnyFunSuite
+class  Test extends AnyFunSuite with BeforeAndAfter {
 
   val almaren = Almaren("App Test")
 
