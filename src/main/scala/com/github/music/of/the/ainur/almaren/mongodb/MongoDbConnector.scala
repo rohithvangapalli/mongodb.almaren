@@ -98,16 +98,16 @@ private[almaren] trait MongoDbConnector extends Core {
   def targetMongoDb(hosts: String,database: String,collection: String,user:Option[String] = None,password:Option[String] = None,stringPrefix:Option[String] = None,options:Map[String,String] = Map(),saveMode:SaveMode = SaveMode.ErrorIfExists): Option[Tree] =
      TargetMongoDb(hosts,database,collection,user,password,stringPrefix,options,saveMode)
 
-  def targetMongoDb(connectionUri: String, collection: String, options: Map[String, String] = Map(), saveMode: SaveMode = SaveMode.ErrorIfExists): Option[Tree] =
+  def targetMongoDbConnectionUri(connectionUri: String, collection: String, options: Map[String, String] = Map(), saveMode: SaveMode = SaveMode.ErrorIfExists): Option[Tree] =
     TargetMongoDbx(connectionUri, collection, options, saveMode)
 
   def sourceMongoDb(hosts: String,database: String,collection: String,user:Option[String] = None,password:Option[String] = None,stringPrefix:Option[String] = None,options:Map[String,String] = Map()): Option[Tree] =
     SourceMongoDb(hosts,database,collection,user,password,stringPrefix,options)
 
-  def sourceMongoDb(connectionUri: String, collection: String, options: Map[String, String] = Map()): Option[Tree] =
+  def sourceMongoDbConnectionUri(connectionUri: String, collection: String, options: Map[String, String] = Map()): Option[Tree] =
     SourceMongoDbx(connectionUri, collection, options)
 }
 
 object MongoDb {
-  implicit class MongoImplicit(val container: Option[Tree]) extends MongoDbConnector
+  implicit class  MongoImplicit(val container: Option[Tree]) extends MongoDbConnector
 }

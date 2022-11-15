@@ -64,7 +64,7 @@ import com.github.music.of.the.ainur.almaren.Almaren
 import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
 import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 
-almaren.builder.sourceMongoDb("localhost","foo","bar",None,None,Some("srv"))
+almaren.builder.sourceMongoDbConnectionUri("localhost","foo","bar",None,None,Some("srv"))
 ```
 
 Parameters for connectionUri:
@@ -140,5 +140,5 @@ import com.github.music.of.the.ainur.almaren.Almaren
 import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
 import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 
-almaren.builder.targetMongoDb("mongodb://localhost:27017/foo","bar", saveMode = SaveMode.Overwrite)
+almaren.builder.targetMongoDbConnectionUri("mongodb://localhost:27017/foo","bar", saveMode = SaveMode.Overwrite)
 ```

@@ -36,10 +36,10 @@ class Test extends AnyFunSuite with BeforeAndAfter {
   test(df1,df2,"MongoDB")
 
   //Write Data From MongoDB Using ConnectionUri
-  val df3 = almaren.builder.sourceSql(s"SELECT * FROM $testTable").targetMongoDb("mongodb://localhost/test", "movie1", saveMode = SaveMode.Overwrite).batch
+  val df3 = almaren.builder.sourceSql(s"SELECT * FROM $testTable").targetMongoDbConnectionUri("mongodb://localhost/test", "movie1", saveMode = SaveMode.Overwrite).batch
 
   // Read Data From MongoDB
-  val df4 = almaren.builder.sourceMongoDb("mongodb://localhost/test", "movie1").batch
+  val df4 = almaren.builder.sourceMongoDbConnectionUri("mongodb://localhost/test", "movie1").batch
 
   test(df1,df2,"MongoDB Connection Uri")
 
