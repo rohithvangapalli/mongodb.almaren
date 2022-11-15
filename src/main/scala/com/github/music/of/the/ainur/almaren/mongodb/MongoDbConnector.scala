@@ -29,6 +29,18 @@ private[almaren] case class SourceMongoDb(
     )}
 }
 
+private[almaren] case class SourceMongoDbx(
+  connectionUri: String,
+  collection: String,
+  options: Map[String, String]) extends Source {
+  def source(df: DataFrame): DataFrame = {
+    logger.info(s" collection:{$collection}, options:{$options}")
+    SparkSessionFunctions(df.sparkSession).loadFromMongoDB(ReadConfig(
+      Map("uri" -> connectionUri, "collection" -> "collection") ++ options
+    )
+    )
+  }
+}
 
 private[almaren] case class TargetMongoDb(
   hosts: String,
@@ -60,12 +72,40 @@ private[almaren] case class TargetMongoDb(
 
 }
 
+private[almaren] case class TargetMongoDbx(
+  connectionUri: String,
+  collection: String,
+  options:Map[String,String],
+  saveMode:SaveMode) extends Target {
+
+  def target(df: DataFrame): DataFrame = {
+    logger.info(s"collection:{$collection}, options:{$options}, saveMode:{$saveMode}")
+
+    val writeConfig = WriteConfig(
+      Map("uri" -> connectionUri, "collection" -> "collection") ++ options
+    )
+
+    MongoSpark.save(
+      df.write.format("mongo")
+        .options(options)
+        .mode(saveMode),writeConfig)
+    df
+  }
+
+}
+
 private[almaren] trait MongoDbConnector extends Core {
   def targetMongoDb(hosts: String,database: String,collection: String,user:Option[String] = None,password:Option[String] = None,stringPrefix:Option[String] = None,options:Map[String,String] = Map(),saveMode:SaveMode = SaveMode.ErrorIfExists): Option[Tree] =
      TargetMongoDb(hosts,database,collection,user,password,stringPrefix,options,saveMode)
 
+  def targetMongoDb(connectionUri: String, collection: String, options: Map[String, String] = Map(), saveMode: SaveMode = SaveMode.ErrorIfExists): Option[Tree] =
+    TargetMongoDbx(connectionUri, collection, options, saveMode)
+
   def sourceMongoDb(hosts: String,database: String,collection: String,user:Option[String] = None,password:Option[String] = None,stringPrefix:Option[String] = None,options:Map[String,String] = Map()): Option[Tree] =
     SourceMongoDb(hosts,database,collection,user,password,stringPrefix,options)
+
+  def sourceMongoDb(connectionUri: String, collection: String, options: Map[String, String] = Map()): Option[Tree] =
+    SourceMongoDbx(connectionUri, collection, options)
 }
 
 object MongoDb {
