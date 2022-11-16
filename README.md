@@ -12,7 +12,7 @@ libraryDependencies += "org.mongodb.spark" % "mongo-spark-connector" % "2.4.4"
 To run in spark-shell:
 
 ```
-spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.8-2.4,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.7-2.4,org.mongodb.spark:mongo-spark-connector_2.12:2.4.4"
+spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.8-2.4,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.7-2.4,org.mongodb.spark:mongo-spark-connector_2.11:2.4.4"
 ```
 
 MongoDB Connector is available in [Maven Central](https://mvnrepository.com/artifact/com.github.music-of-the-ainur)
