@@ -99,14 +99,14 @@ private[almaren] trait MongoDbConnector extends Core {
   def targetMongoDb(hosts: String,database: String,collection: String,user:Option[String] = None,password:Option[String] = None,stringPrefix:Option[String] = None,options:Map[String,String] = Map(),saveMode:SaveMode = SaveMode.ErrorIfExists): Option[Tree] =
      TargetMongoDb(hosts,database,collection,user,password,stringPrefix,options,saveMode)
 
-  def targetMongoDbUri(Uri: String, collection: String, options: Map[String, String] = Map(), saveMode: SaveMode = SaveMode.ErrorIfExists): Option[Tree] =
-    TargetMongoDbx(Uri, collection, options, saveMode)
+  def targetMongoDbUri(uri: String, collection: String, options: Map[String, String] = Map(), saveMode: SaveMode = SaveMode.ErrorIfExists): Option[Tree] =
+    TargetMongoDbx(uri, collection, options, saveMode)
 
   def sourceMongoDb(hosts: String,database: String,collection: String,user:Option[String] = None,password:Option[String] = None,stringPrefix:Option[String] = None,options:Map[String,String] = Map()): Option[Tree] =
     SourceMongoDb(hosts,database,collection,user,password,stringPrefix,options)
 
-  def sourceMongoDbUri(Uri: String, collection: String, options: Map[String, String] = Map()): Option[Tree] =
-    SourceMongoDbx(Uri, collection, options)
+  def sourceMongoDbUri(uri: String, collection: String, options: Map[String, String] = Map()): Option[Tree] =
+    SourceMongoDbx(uri, collection, options)
 }
 
 object MongoDb {
