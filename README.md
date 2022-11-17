@@ -65,13 +65,13 @@ import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 almaren.builder.sourceMongoDbUri("localhost","foo","bar",None,None,Some("srv"))
 ```
     
-Parameters for Uri:
+Parameters for uri:
 
 | Parameters | Description                                                                                                       |
-|----------|-------------------------------------------------------------------------------------------------------------------|
-| Uri      | mongodb://localhost:27017/foo                                                                                     |
+|------------|-------------------------------------------------------------------------------------------------------------------|
+| uri        | mongodb://localhost:27017/foo                                                                                     |
 | collection | bar                                                                                                               |
-| options  | extra connector options                                                                                           |
+| options    | extra connector options                                                                                           |
 #### For Connection Uri Type Mongo
 
 ```scala
@@ -119,14 +119,14 @@ import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 
 almaren.builder.targetMongoDb("localhost","foo","bar",None,None,Some("srv"), saveMode = SaveMode.Overwrite)
 ```
-Parameters for Uri:
+Parameters for uri:
 
 | Parameters | Description                                                                                                       |
-|----------|-------------------------------------------------------------------------------------------------------------------|
-| Uri      | mongodb://localhost:27017/foo                                                                                     |
+|------------|-------------------------------------------------------------------------------------------------------------------|
+| uri        | mongodb://localhost:27017/foo                                                                                     |
 | collection | bar                                                                                                               |
-| options  | extra connector options                                                                                           |
-| saveMode | SaveMode.Overwrite      |
+| options    | extra connector options                                                                                           |
+| saveMode   | SaveMode.Overwrite      |
 #### For Connection Uri Type Mongo
 
 ```scala
