@@ -35,6 +35,14 @@ class  Test extends AnyFunSuite with BeforeAndAfter {
 
   test(df1,df2,"MongoDB")
 
+  //Write Data From MongoDB Using Uri
+  val df3 = almaren.builder.sourceSql(s"SELECT * FROM $testTable").targetMongoDbUri("mongodb://localhost/test", "movie1", saveMode = SaveMode.Overwrite).batch
+
+  // Read Data From MongoDB
+  val df4 = almaren.builder.sourceMongoDbUri("mongodb://localhost/test", "movie1").batch
+
+  test(df1, df2, "MongoDB Connection Uri")
+
   def test(df1: DataFrame, df2: DataFrame, name: String): Unit = {
     testCount(df1, df2, name)
     testCompare(df1, df2, name)
