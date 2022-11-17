@@ -9,7 +9,8 @@ import org.apache.spark.sql.{DataFrame, Column}
 import org.apache.spark.sql.AnalysisException
 import org.apache.spark.sql.functions._
 import org.scalatest.funsuite.AnyFunSuite
-class  Test extends AnyFunSuite with BeforeAndAfter {
+
+class Test extends AnyFunSuite with BeforeAndAfter {
 
   val almaren = Almaren("App Test")
 
@@ -18,7 +19,7 @@ class  Test extends AnyFunSuite with BeforeAndAfter {
     .config("spark.ui.enabled","false")
     .config("spark.sql.shuffle.partitions", "1")
     .getOrCreate()
-  
+
   spark.sparkContext.setLogLevel("ERROR")
 
   import spark.implicits._
@@ -33,6 +34,14 @@ class  Test extends AnyFunSuite with BeforeAndAfter {
   val df2 = almaren.builder.sourceMongoDb("localhost","test","movie").batch
 
   test(df1,df2,"MongoDB")
+
+  //Write Data From MongoDB Using Uri
+  val df3 = almaren.builder.sourceSql(s"SELECT * FROM $testTable").targetMongoDbUri("mongodb://localhost/test", "movie1", saveMode = SaveMode.Overwrite).batch
+
+  // Read Data From MongoDB
+  val df4 = almaren.builder.sourceMongoDbUri("mongodb://localhost/test", "movie1").batch
+
+  test(df1,df2,"MongoDB Connection Uri")
 
   def test(df1: DataFrame, df2: DataFrame, name: String): Unit = {
     testCount(df1, df2, name)
