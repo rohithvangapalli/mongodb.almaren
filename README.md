@@ -70,10 +70,10 @@ almaren.builder.sourceMongoDbUri("localhost","foo","bar",None,None,Some("srv"))
 Parameters for Uri:
 
 | Parameters | Description                                                                                                       |
-|----------|-------------------------------------------------------------------------------------------------------------------|
-| Uri      | mongodb://localhost:27017/foo                                                                                     |
+|------------|-------------------------------------------------------------------------------------------------------------------|
+| uri        | mongodb://localhost:27017/foo                                                                                     |
 | collection | bar                                                                                                               |
-| options  | extra connector options                                                                                           |
+| options    | extra connector options                                                                                           |
 
 #### For Connection Uri Type Mongo
 
