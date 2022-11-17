@@ -62,7 +62,24 @@ import com.github.music.of.the.ainur.almaren.Almaren
 import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
 import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 
-almaren.builder.sourceMongoDb("localhost","foo","bar",None,None,Some("srv"))
+almaren.builder.sourceMongoDbUri("localhost","foo","bar",None,None,Some("srv"))
+```
+
+Parameters for Uri:
+
+| Parameters | Description                                                                                                       |
+|----------|-------------------------------------------------------------------------------------------------------------------|
+| Uri      | mongodb://localhost:27017/foo                                                                                     |
+| collection | bar                                                                                                               |
+| options  | extra connector options                                                                                           |
+
+#### For Connection Uri Type Mongo
+
+```scala
+import com.github.music.of.the.ainur.almaren.Almaren
+import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
+import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
+almaren.builder.sourceMongoDb("mongodb://localhost:27017/foo","bar")
 ```
 
 ### Target
@@ -101,4 +118,22 @@ import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
 import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 
 almaren.builder.targetMongoDb("localhost","foo","bar",None,None,Some("srv"), saveMode = SaveMode.Overwrite)
+```
+Parameters for Uri:
+
+| Parameters | Description                                                                                                       |
+|----------|-------------------------------------------------------------------------------------------------------------------|
+| Uri      | mongodb://localhost:27017/foo                                                                                     |
+| collection | bar                                                                                                               |
+| options  | extra connector options                                                                                           |
+| saveMode | SaveMode.Overwrite      |
+
+
+#### For Connection Uri Type Mongo
+
+```scala
+import com.github.music.of.the.ainur.almaren.Almaren
+import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
+import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
+almaren.builder.targetMongoDbUri("mongodb://localhost:27017/foo","bar", saveMode = SaveMode.Overwrite)
 ```
