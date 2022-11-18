@@ -36,7 +36,7 @@ private[almaren] case class SourceMongoDbx(
   def source(df: DataFrame): DataFrame = {
     logger.info(s" collection:{$collection}, options:{$options}")
     SparkSessionFunctions(df.sparkSession).loadFromMongoDB(ReadConfig(
-      Map("uri" -> uri, "collection" -> "collection") ++ options
+      Map("uri" -> uri, "collection" -> collection) ++ options
     )
     )
   }
@@ -82,7 +82,7 @@ private[almaren] case class TargetMongoDbx(
     logger.info(s"collection:{$collection}, options:{$options}, saveMode:{$saveMode}")
 
     val writeConfig = WriteConfig(
-      Map("uri" -> uri, "collection" -> "collection") ++ options
+      Map("uri" -> uri, "collection" -> collection) ++ options
     )
 
     MongoSpark.save(
