@@ -62,7 +62,7 @@ import com.github.music.of.the.ainur.almaren.Almaren
 import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
 import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 
-almaren.builder.sourceMongoDbUri("localhost","foo","bar",None,None,Some("srv"))
+almaren.builder.sourceMongoDb("localhost","foo","bar",None,None,Some("srv"))
 ```
     
 Parameters for uri:
@@ -79,7 +79,7 @@ import com.github.music.of.the.ainur.almaren.Almaren
 import com.github.music.of.the.ainur.almaren.builder.Core.Implicit
 import com.github.music.of.the.ainur.almaren.mongodb.MongoDb.MongoImplicit
 
-almaren.builder.sourceMongoDb("mongodb://localhost:27017/foo","bar")
+almaren.builder.sourceMongoDbUri("mongodb://localhost:27017/foo","bar")
 ```
 
 ### Target
