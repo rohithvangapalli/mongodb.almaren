@@ -72,7 +72,6 @@ private[almaren] case class TargetMongoDb(
       .save
     df
   }
-
 }
 
 private[almaren] case class TargetMongoDbx(
@@ -83,14 +82,13 @@ private[almaren] case class TargetMongoDbx(
 
   def target(df: DataFrame): DataFrame = {
     logger.info(s"collection:{$collection}, options:{$options}, saveMode:{$saveMode}")
-    val params = options ++ Map("connection.uri" -> uri, "collection" -> "collection") ++ options
+    val params = options ++ Map("connection.uri" -> uri, "collection" -> collection) ++ options
     df.write.format("mongodb")
       .options(params)
       .mode(saveMode)
       .save
     df
   }
-
 }
 
 private[almaren] trait MongoDbConnector extends Core {
