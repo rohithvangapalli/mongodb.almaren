@@ -38,7 +38,7 @@ private[almaren] case class SourceMongoDbx(
   def source(df: DataFrame): DataFrame = {
     logger.info(s" collection:{$collection}, options:{$options}")
 
-    val params = Map("connection.uri" -> uri, "collection" -> "collection") ++ options
+    val params = Map("connection.uri" -> uri, "collection" -> collection) ++ options
 
     df.sparkSession.read.format("mongodb")
       .options(params)
@@ -84,7 +84,7 @@ private[almaren] case class TargetMongoDbx(
   def target(df: DataFrame): DataFrame = {
     logger.info(s"collection:{$collection}, options:{$options}, saveMode:{$saveMode}")
 
-    val params = Map("connection.uri" -> uri, "collection" -> "collection") ++ options
+    val params = Map("connection.uri" -> uri, "collection" -> collection) ++ options
 
     df.write.format("mongodb")
       .options(params)
