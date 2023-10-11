@@ -1,10 +1,10 @@
 ThisBuild / name := "mongodb.almaren"
 ThisBuild / organization := "com.github.music-of-the-ainur"
 
-lazy val scala212 = "2.12.10"
+lazy val scala213 = "2.13.9"
 
-crossScalaVersions := Seq(scala212)
-ThisBuild / scalaVersion := scala212
+crossScalaVersions := Seq(scala213)
+ThisBuild / scalaVersion := scala213
 
 
 val sparkVersion = "3.3.3"
@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion % "provided",
   "org.apache.spark" %% "spark-sql" % sparkVersion % "provided",
   "com.github.music-of-the-ainur" %% "almaren-framework" % s"0.9.10-${majorVersion}" % "provided",
-  "org.mongodb.spark" % "mongo-spark-connector" % "10.0.5" % "provided",
+  "org.mongodb.spark" % "mongo-spark-connector_2.13" % "10.2.0" % "provided",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5",
   "org.scalatest" %% "scalatest" % "3.2.14" % "test"
 )
