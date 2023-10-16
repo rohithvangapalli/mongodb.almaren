@@ -6,13 +6,13 @@ To add Mongodb Almaren dependency to your sbt build:
 
 ```
 libraryDependencies += "com.github.music-of-the-ainur" %% "mongodb-almaren" % "0.0.9-3.3"
-libraryDependencies += "org.mongodb.spark" % "mongo-spark-connector" % "10.0.5"
+libraryDependencies += "org.mongodb.spark" % "mongo-spark-connector" % "10.2.0"
 ```
 
 To run in spark-shell:
 
 ```
-spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.10-3.3,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.9-3.3,org.mongodb.spark:mongo-spark-connector:10.0.5"
+spark-shell --master local[*] --packages "com.github.music-of-the-ainur:almaren-framework_2.12:0.9.10-3.3,com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.9-3.3,org.mongodb.spark:mongo-spark-connector:10.2.0"
 ```
 
 MongoDB Connector is available in [Maven Central](https://mvnrepository.com/artifact/com.github.music-of-the-ainur)
@@ -20,7 +20,9 @@ repository.
 
 | version                    | Connector Artifact                                             |
 |----------------------------|----------------------------------------------------------------|
-| Spark 3.4.x and scala 2.12 | `com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.9-3.4` |
+| Spark 3.4.x and scala 2.13 | `com.github.music-of-the-ainur:mongodb-almaren_2.13:0.0.9-3.4` |
+| Spark 3.4.x and scala 2.12 | `com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.9-3.3` |
+| Spark 3.3.x and scala 2.13 | `com.github.music-of-the-ainur:mongodb-almaren_2.13:0.0.9-3.3` |
 | Spark 3.3.x and scala 2.12 | `com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.9-3.3` |
 | Spark 3.2.x and scala 2.12 | `com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.9-3.2` |
 | Spark 3.1.x and scala 2.12 | `com.github.music-of-the-ainur:mongodb-almaren_2.12:0.0.9-3.1` |

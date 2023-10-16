@@ -1,9 +1,10 @@
 ThisBuild / name := "mongodb.almaren"
 ThisBuild / organization := "com.github.music-of-the-ainur"
 
+lazy val scala212 = "2.12.10"
 lazy val scala213 = "2.13.9"
 
-crossScalaVersions := Seq(scala213)
+crossScalaVersions := Seq(scala212,scala213)
 ThisBuild / scalaVersion := scala213
 
 
